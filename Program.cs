@@ -8,5 +8,6 @@ public class Program
         Console.WriteLine("Enter your name Kwasia!");
         myGame.name = Console.ReadLine();
         Console.WriteLine("Your Players Name is " + myGame.name);
+        myGame.start();
     }
 }
