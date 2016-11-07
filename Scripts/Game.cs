@@ -1,78 +1,60 @@
 using System;
-public class Game {
-    
-    public Game() {
+public class Game { //This is the cookie cutter
+    public Game() { //"Game" Represents a constructor. This runs when the game class is created.
+//Is a function that runs when the instance of an object is created
         Health.power = 100;
         Health.message = "You are getting stronger.";
-        Ammo.message = "You have more Ammo.";
-        Cave.StartMessage = "You have entered the scary cave";
-        UnderWater.Objects = new string[] {"Seawead", "Coral" ,"Fish", "Shark"};
+        Ammo.message = "You have more ammo.";
+        Cave.StartMessage = "You have entered a cave.";
+        UnderWater.objects = new string[] {"Sea Weed", "Coral", "Fish", "Shark"}; // This line replaces the original path of walking itself.
     }
-    //Runs at start of game
-         public void Start(){
-        Console.WriteLine("Please type your name:");
+    public void Start () {
+        
+        Console.WriteLine("Please type in your name");
         name = Console.ReadLine();
         Console.WriteLine("Your player name is " + name);
-        Cave.enter();
-        while(Game.canPlay){
-        GameTimer();
-        Play();
-        }
-        Console.WriteLine("You Died");
-        Console.WriteLine("Game OVer");
+        Cave.Enter();
+        while(Program.canPlay) {
+            GameTimer();
+            Play();
+        } 
+        Console.WriteLine("You died");
+        Console.WriteLine("Game Over");
+        /*
+        After prompting the game for a name we:
+        Enter a cave and find health.
+        Meet a dragon. (need an enemy class)
+        Pick weapon.
+        Battle the dragon.
+        If we win: get Health and ammo
+        If dragon wins: lose health
+        */
     }
-
-    private void Play (){
-        Random randomeNum = new Random();
-        Cave.Encounter(randomeNum.Next(0, Cave.Objects.Length));
+  private void Play (){
+        Random randomNum = new Random();
+        Cave.Encounter(randomNum.Next(0, Cave.objects.Length));
+  }
+    public static void GameTimer () {
+        System.Threading.Thread.Sleep(2000);
     }
-
-    if(gameState == "end") {
-        Console.Writeline("Game Over")
-        Enviornment.Exit(0);
-    }
-
-    if(gameState == "help"){
-        Console.Writeline("What do you need help for? If you can't play this game, you have issues.")
-}
-
-    if(gameState != "help" \\ gameState != "play" \\ gameState != "end") {
-        Console.writeline(gameState = " is not a valid option.")
-    }
-    public static void GameTimer (){
-         System.Threading.Thread.Sleep(2000);
-
-    }
-    // game levels
-        private Levelbasics Cave = new Levelbasics();
-        public static Levelbasics UnderWater = new Levelbasics();
-    //game power ups
+    //Game levels
+    private LevelBase Cave = new CaveLevel();
+    public static LevelBase UnderWater = new LevelBase();
+    //Game PowerUps
+    
     public PowerUpBase Health = new PowerUpBase();
     public PowerUpBase Ammo = new PowerUpBase();
 
-//game weapons
-    private WeaponBase Gun = new WeaponBase();
-    private WeaponBase Riffle = new WeaponBase();
-    public string name;
-    private int score;
-    public static bool canPlay = true;
-
-}
-
-
-// Game PowerUps
-public PowerUpBase Health = new PowerUpBase();
-public PowerUpBase Ammo = new PowerUpBase();
-
-
-//Game Weapons
-    private WeaponBase Gun = new WeaponBase();
-
-    private WeaponBase Knife = new WeaponBase();
+    
+    //Access Modifiers
+    //Game weapons
+    private WeaponBase Gun = new WeaponBase(); //The var "Gun" is an object created, then telling WeaponBase file to run. -- The var retrieves its attributes from the WeaponBase class
     private WeaponBase Rifle = new WeaponBase();
-
+    private WeaponBase Knife = new WeaponBase();
+   
     public string name;
+    private int score; // Without private, it would default to private.
+    //-------------
 
-    private int score;
 
 }
